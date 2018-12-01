@@ -11,3 +11,50 @@ License URI:    http://www.gnu.org/licenses/gpl-2.0.html
 Text Domain:    generatepress-berlinlovesyou
 Tags:           e-commerce, two-columns, left-sidebar, right-sidebar, custom-colors, custom-menu, featured-images, full-width-template, threaded-comments, rtl-language-support, footer-widgets, sticky-post, theme-options
 */
+
+
+/**== Sticky Footer CSS :: START ==**/
+footer .copyright-bar {
+	display: none;
+}
+footer .grid-container {
+	max-width: 100%;
+}
+.footer-bar aside ul li a span {
+	color: #000;
+	display: block;
+	font-size: 11px;
+}
+.footer-bar aside ul li a i, 
+.footer-bar aside ul li a img {
+	height: 20px !important;
+	width: 20px !important;
+	color: #000;
+}
+footer.site-info {
+	padding: 0;
+	background-color: #f9f8f4;
+	position: fixed;
+	width: 100%;
+	bottom: 0;
+	left: 0;
+	right: 0;
+}
+.footer-bar {
+	margin-bottom: 0;
+	float: none !important;
+	text-align: unset !important;
+}
+.footer-bar .menu-footer-menu-container {
+	overflow-y: scroll;
+	padding: 5px 10px;
+}
+.footer-bar aside ul {
+	display: flex !important;
+	justify-content: space-between;
+}
+.footer-bar aside ul li {
+	min-width: 70px;
+	margin: 0;
+}
+/**== Sticky Footer CSS :: END ==**/
