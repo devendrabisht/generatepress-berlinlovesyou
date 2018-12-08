@@ -1,7 +1,7 @@
 
 jQuery( document ).ready( function( $ ) {
 
-	return;
+	// return;
 
 	$( window ).scroll( function() {
 		if ( $( window).scrollTop() == $( document ).height() - $( window ).height() ) {
