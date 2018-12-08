@@ -61,18 +61,24 @@ footer.site-info {
 
 
 
-.bly-gp-side-menu-wrapper { /* style menu wrapper */
-	background: rgba(0,0,0,.95);
-	padding: 40px 0 0 40px;
-	position: fixed; /* Fixed position */
-	top: 0;
-	right: 0; /* Sidebar initial position. "right" for right positioned menu */
-	height: 100%;
-	z-index: 2;
-	transition: 0.5s; /* CSS transition speed */
-	width: 250px;
-	font: 20px "Courier New", Courier, monospace;
-	box-sizing: border-box;
+.bly-gp-side-menu-wrapper {
+    background: #f3f3f3;
+    padding: 40px 0 0 40px;
+    position: fixed;
+    top: 0;
+    right: 0;
+    height: 100%;
+    z-index: 2;
+    transition: 0.5s;
+    max-width: 400px;
+    font: 20px "Courier New", Courier, monospace;
+    box-sizing: border-box;
+    width: 100%;
+    overflow-y: auto;
+}
+.bly-gp-side-menu-wrapper a {
+    color: #333333;
+    font-weight: bold;
 }
 .bly-gp-side-menu-wrapper > ul{ /* css ul list style */
 	list-style:none;
@@ -97,7 +103,6 @@ footer.site-info {
     font-size: 35px;
     text-decoration: none;
 }
-
 .bly-gp-menu-overlay { /* overlay */
     height: 100%;
     width: 0;
