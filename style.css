@@ -59,8 +59,7 @@ footer.site-info {
 }
 /**== Sticky Footer CSS :: END ==**/
 
-
-
+/**== SlideIn Menu CSS :: START ==**/
 .bly-gp-side-menu-wrapper {
     background: #f3f3f3;
     padding: 40px 0 0 40px;
@@ -117,3 +116,55 @@ footer.site-info {
     opacity: 0;
     transition: opacity 1s;
 }
+/**== SlideIn Menu CSS :: END ==**/
+
+/**== Blog Listing CSS :: START ==**/
+.post-content-block {
+	padding: 56px 0;
+	border-bottom: 1px solid #e2e2e2;
+}
+.post-content-block a {
+	display: flex;
+	align-items: center;
+	flex-flow: row wrap;
+}
+.post-content-block a .left-block {
+	width: 20%;
+	margin-right: 50px;
+}
+.post-content-block a .right-block {
+	width: 75%;
+}
+.left-block .post-thumbnail img {
+	height: 264px;
+	width: 220px;
+	object-fit: cover;
+}
+.right-block .post-category {
+	color: #5421a0;
+	font-size: 14px;
+	text-transform: uppercase;
+	font-weight: 700;
+}
+.right-block .post-title h3 {
+	color: #333;
+	font-size: 60px;
+	font-weight: bold;
+	margin: 15px 0;
+	text-transform: uppercase;
+	line-height: 1.05em;
+}
+.right-block .post-date {
+	color: #a09191;
+	font-size: 14px;
+	font-weight: 600;
+}
+.post-content-block a:hover > .left-block .post-thumbnail {
+	transform: rotate(-7deg) scale(.85);
+	transition: all .3s;
+	opacity: 1;
+}
+.post-content-block a:hover > .right-block {
+	opacity: 0.7;
+}
+/**== Blog Listing CSS :: END ==**/
