@@ -133,6 +133,10 @@ footer.site-info {
 .post-content-block a .right-block {
 	overflow-x: hidden;
 }
+.left-block .post-thumbnail {
+	transition: all .5s;
+}
+
 .left-block .post-thumbnail img {
 	height: 264px;
 	min-width: 220px;
@@ -160,7 +164,6 @@ footer.site-info {
 }
 .post-content-block a:hover > .left-block .post-thumbnail {
 	transform: rotate(-7deg) scale(.85);
-	transition: all .3s;
 	opacity: 1;
 }
 .post-content-block a:hover > .right-block {
