@@ -126,17 +126,16 @@ footer.site-info {
 .post-content-block a {
 	display: flex;
 	align-items: center;
-	flex-flow: row wrap;
 }
 .post-content-block a .left-block {
-	width: 20%;
 	margin-right: 50px;
 }
 .post-content-block a .right-block {
-	width: 75%;
+	overflow-x: hidden;
 }
 .left-block .post-thumbnail img {
 	height: 264px;
+	min-width: 220px;
 	width: 220px;
 	object-fit: cover;
 }
@@ -168,3 +167,34 @@ footer.site-info {
 	opacity: 0.7;
 }
 /**== Blog Listing CSS :: END ==**/
+
+
+@media only screen and (max-width: 767px) {
+	.post-content-block a .left-block {
+		margin-right: 10px;
+	}
+	.left-block .post-thumbnail img {
+		height: 150px;
+		width: 125px;
+		min-width: 125px;
+	}
+	.post-content-block {
+		padding: 20px 0;
+		border-bottom: 0 solid #e2e2e2;
+	}
+	.right-block .post-category,
+	.right-block .post-date {
+		font-size: 10px;
+	}
+	.right-block .post-title h3 {
+		font-size: 16px;
+		margin: 5px 0;
+		text-transform: none;
+		line-height: 1.05em;
+	}
+}
+@media only screen and (min-width: 768px) and (max-width: 991px) {
+	.right-block .post-title h3 {
+		font-size: 40px;
+	}
+}
