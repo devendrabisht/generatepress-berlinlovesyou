@@ -1,5 +1,7 @@
 <?php
 
+include_once( 'includes/widget-customization/class-bly-widget-customization.php' );
+
 add_action( 'wp_nav_menu_item_custom_fields', '_fields', 10, 4 );
 function _fields( $id, $item, $depth, $args ) {
 	die("COOL");
@@ -84,42 +86,7 @@ function rc_scm_update_custom_nav_fields( $menu_id, $menu_item_db_id, $args ) {
 
 
 
-add_action( 'in_widget_form', 'bly_in_widget_form', 5, 3 );
-function bly_in_widget_form( $thisRef, $return, $instance ){
-    $instance = wp_parse_args(
-    	(array) $instance,
-    	array( 'bly_custom_css_class' => '' )
-    );
-    if ( ! isset( $instance['bly_custom_css_class'] ) ) {
-    	$instance['bly_custom_css_class'] = '';
-    }
-    ?>
-    <p>
-        <label for="<?php echo $thisRef->get_field_id('bly_custom_css_class'); ?>"><?php _e( 'Custom CSS Class(s)', 'TEXTDOMAIN' ); ?>:</label>
-        <input id="<?php echo $thisRef->get_field_id('bly_custom_css_class'); ?>" name="<?php echo $thisRef->get_field_name('bly_custom_css_class'); ?>" type="text" value="<?php echo $instance['bly_custom_css_class'];?>" />
-    </p>
-    <?php
-}
 
-add_filter( 'widget_update_callback', 'bly_widget_update_callback', 5, 3 );
-function bly_widget_update_callback( $instance, $new_instance, $old_instance ) {
-    $instance['bly_custom_css_class'] = strip_tags( $new_instance['bly_custom_css_class'] );
-    return $instance;
-}
-
-add_filter( 'dynamic_sidebar_params', 'bly_dynamic_sidebar_params' );
-function bly_dynamic_sidebar_params( $params ) {
-    global $wp_registered_widgets;
-    $widget_id = $params[0]['widget_id'];
-    $widget_obj = $wp_registered_widgets[$widget_id];
-    $widget_opt = get_option( $widget_obj['callback'][0]->option_name );
-    $widget_num = $widget_obj['params'][0]['number'];
-    if ( isset( $widget_opt[$widget_num]['bly_custom_css_class'] ) ) {
-    	$bly_custom_css_class = $widget_opt[$widget_num]['bly_custom_css_class'];
-        $params[0]['before_widget'] = preg_replace( '/class="/', 'class="'.$bly_custom_css_class, $params[0]['before_widget'], 1 );
-    }
-    return $params;
-}
 
 
 function get_post_primary_category($post_id, $term='category', $return_all_categories=false){
