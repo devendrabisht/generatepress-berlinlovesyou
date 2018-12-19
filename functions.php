@@ -1,5 +1,127 @@
 <?php
 
+add_action( 'wp_nav_menu_item_custom_fields', '_fields', 10, 4 );
+function _fields( $id, $item, $depth, $args ) {
+	die("COOL");
+	// foreach ( self::$fields as $_key => $label ) :
+	$_key = 'field-01';
+	$label = __( 'Custom Field #1', 'menu-item-custom-fields-example' );
+	$key   = sprintf( 'menu-item-%s', $_key );
+	$id    = sprintf( 'edit-%s-%s', $key, $item->ID );
+	$name  = sprintf( '%s[%s]', $key, $item->ID );
+	$value = get_post_meta( $item->ID, $key, true );
+	$class = sprintf( 'field-%s', $_key );
+	?>
+	<p class="description description-wide <?php echo esc_attr( $class ) ?>">
+		<?php printf(
+			'<label for="%1$s">%2$s<br /><input type="text" id="%1$s" class="widefat %1$s" name="%3$s" value="%4$s" /></label>',
+			esc_attr( $id ),
+			esc_html( $label ),
+			esc_attr( $name ),
+			esc_attr( $value )
+		) ?>
+	</p>
+	<?php
+	// endforeach;
+}
+
+/*
+ * Saves new field to postmeta for navigation
+ */
+// add_action('wp_update_nav_menu_item', 'custom_nav_update',10, 3);
+function custom_nav_update($menu_id, $menu_item_db_id, $args ) {
+    if ( is_array($_REQUEST['menu-item-custom']) ) {
+        $custom_value = $_REQUEST['menu-item-custom'][$menu_item_db_id];
+        update_post_meta( $menu_item_db_id, '_menu_item_custom', $custom_value );
+    }
+}
+
+/*
+ * Adds value of new field to $item object that will be passed to     Walker_Nav_Menu_Edit_Custom
+ */
+// add_filter( 'wp_setup_nav_menu_item','custom_nav_item' );
+function custom_nav_item($menu_item) {
+    $menu_item->custom = get_post_meta( $menu_item->ID, '_menu_item_custom', true );
+    return $menu_item;
+}
+
+/**
+ * Add custom fields to $item nav object
+ * in order to be used in custom Walker
+ *
+ * @access      public
+ * @since       1.0 
+ * @return      void
+*/
+// add custom menu fields to menu
+// add_filter( 'wp_setup_nav_menu_item', 'rc_scm_add_custom_nav_fields' );
+function rc_scm_add_custom_nav_fields( $menu_item ) {
+
+    $menu_item->subtitle = get_post_meta( $menu_item->ID, '_menu_item_subtitle', true );
+    return $menu_item;
+
+}
+
+/**
+ * Save menu custom fields
+ *
+ * @access      public
+ * @since       1.0 
+ * @return      void
+*/
+// save menu custom fields
+// add_action( 'wp_update_nav_menu_item', 'rc_scm_update_custom_nav_fields', 10, 3 );
+function rc_scm_update_custom_nav_fields( $menu_id, $menu_item_db_id, $args ) {
+
+    // Check if element is properly sent
+    if ( is_array( $_REQUEST['menu-item-subtitle']) ) {
+        $subtitle_value = $_REQUEST['menu-item-subtitle'][$menu_item_db_id];
+        update_post_meta( $menu_item_db_id, '_menu_item_subtitle', $subtitle_value );
+    }
+
+}
+
+
+
+
+add_action( 'in_widget_form', 'bly_in_widget_form', 5, 3 );
+function bly_in_widget_form( $thisRef, $return, $instance ){
+    $instance = wp_parse_args(
+    	(array) $instance,
+    	array( 'bly_custom_css_class' => '' )
+    );
+    if ( ! isset( $instance['bly_custom_css_class'] ) ) {
+    	$instance['bly_custom_css_class'] = '';
+    }
+    ?>
+    <p>
+        <label for="<?php echo $thisRef->get_field_id('bly_custom_css_class'); ?>"><?php _e( 'Custom CSS Class(s)', 'TEXTDOMAIN' ); ?>:</label>
+        <input id="<?php echo $thisRef->get_field_id('bly_custom_css_class'); ?>" name="<?php echo $thisRef->get_field_name('bly_custom_css_class'); ?>" type="text" value="<?php echo $instance['bly_custom_css_class'];?>" />
+    </p>
+    <?php
+}
+
+add_filter( 'widget_update_callback', 'bly_widget_update_callback', 5, 3 );
+function bly_widget_update_callback( $instance, $new_instance, $old_instance ) {
+    $instance['bly_custom_css_class'] = strip_tags( $new_instance['bly_custom_css_class'] );
+    return $instance;
+}
+
+add_filter( 'dynamic_sidebar_params', 'bly_dynamic_sidebar_params' );
+function bly_dynamic_sidebar_params( $params ) {
+    global $wp_registered_widgets;
+    $widget_id = $params[0]['widget_id'];
+    $widget_obj = $wp_registered_widgets[$widget_id];
+    $widget_opt = get_option( $widget_obj['callback'][0]->option_name );
+    $widget_num = $widget_obj['params'][0]['number'];
+    if ( isset( $widget_opt[$widget_num]['bly_custom_css_class'] ) ) {
+    	$bly_custom_css_class = $widget_opt[$widget_num]['bly_custom_css_class'];
+        $params[0]['before_widget'] = preg_replace( '/class="/', 'class="'.$bly_custom_css_class, $params[0]['before_widget'], 1 );
+    }
+    return $params;
+}
+
+
 function get_post_primary_category($post_id, $term='category', $return_all_categories=false){
 	$return = array();
 
