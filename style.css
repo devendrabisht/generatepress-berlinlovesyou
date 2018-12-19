@@ -153,6 +153,7 @@ footer.site-info {
 	margin: 0 0 24px 0;
 	padding-bottom: 6px;
 	border-bottom: 1px solid #e2e2e2;
+	font-weight: 600;
 }
 .bly-si-title ul li a {
 	opacity: 1;
