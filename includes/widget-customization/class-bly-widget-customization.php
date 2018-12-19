@@ -78,7 +78,7 @@ class BLY_Widget_Customization {
 	    $widget_opt = get_option( $widget_obj['callback'][0]->option_name );
 	    $widget_num = $widget_obj['params'][0]['number'];
 	    if ( isset( $widget_opt[$widget_num]['bly_custom_css_class'] ) ) {
-	    	$bly_custom_css_class = $widget_opt[$widget_num]['bly_custom_css_class'];
+	    	$bly_custom_css_class = $widget_opt[$widget_num]['bly_custom_css_class'] . ' ';
 	        $params[0]['before_widget'] = preg_replace( '/class="/', 'class="'.$bly_custom_css_class, $params[0]['before_widget'], 1 );
 	    }
 	    return $params;
