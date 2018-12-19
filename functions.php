@@ -2,7 +2,7 @@
 
 include_once( 'includes/widget-customization/class-bly-widget-customization.php' );
 
-add_action( 'wp_nav_menu_item_custom_fields', '_fields', 10, 4 );
+// add_action( 'wp_nav_menu_item_custom_fields', '_fields', 10, 4 );
 function _fields( $id, $item, $depth, $args ) {
 	die("COOL");
 	// foreach ( self::$fields as $_key => $label ) :
