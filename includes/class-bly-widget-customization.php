@@ -1,5 +1,4 @@
 <?php
-
 if ( ! defined( 'ABSPATH' ) ) {
 	exit; // Exit if accessed directly.
 }
@@ -49,7 +48,6 @@ class BLY_Widget_Customization {
 	
 	}
 
-
 	public function bly_in_widget_form( $thisRef, $return, $instance ){
 	    $instance = wp_parse_args(
 	    	(array) $instance,
@@ -83,6 +81,7 @@ class BLY_Widget_Customization {
 	    }
 	    return $params;
 	}
+	
 }
 
 endif;

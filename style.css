@@ -12,7 +12,30 @@ Text Domain:    generatepress-berlinlovesyou
 Tags:           e-commerce, two-columns, left-sidebar, right-sidebar, custom-colors, custom-menu, featured-images, full-width-template, threaded-comments, rtl-language-support, footer-widgets, sticky-post, theme-options
 */
 
-
+/**== Header CSS :: START ==**/
+#masthead .inside-header {
+	padding: 0;
+	max-width: 100%;
+	position: relative;
+}
+#site-navigation {
+	display: none;
+}
+.bly-gp-menu-open {
+	position: absolute;
+	left: 20px;
+	top: 20px;
+	height: 30px;
+	width: 30px;
+	text-align: center;
+	background-color: #333;
+	border-radius: 50%;
+	padding: 6px;
+}
+.bly-gp-menu-open i {
+	color: #fff;
+}
+/**== Header CSS :: END ==**/
 /**== Sticky Footer CSS :: START ==**/
 footer .copyright-bar {
 	display: none;
@@ -64,6 +87,26 @@ footer.site-info {
 /**== Sticky Footer CSS :: END ==**/
 
 /**== SlideIn Menu CSS :: START ==**/
+.bly-gp-menu-close {
+	display: block;
+	text-align: right;
+	position: relative;
+	color: #fff !important;
+	margin: 7px 0;
+	padding-right: 4px;
+}
+.bly-gp-menu-close::after {
+	content: "";
+	background-color: #333;
+	height: 20px;
+	width: 20px;
+	position: absolute;
+	right: 0;
+	z-index: -1;
+	top: 5px;
+	border-radius: 50%;
+}
+
 .bly-gp-side-menu-wrapper {
 	background: #f3f3f3;
 	padding: 35px;
@@ -109,7 +152,7 @@ footer.site-info {
     height: 100%;
     width: 0;
     position: fixed;
-    z-index: 1;
+    z-index: 2;
     top: 0;
     left: 0;
     background-color: rgba(0,0,0,.7);
@@ -202,11 +245,70 @@ footer.site-info {
 .bly-si-more-menu ul li a {
 	display: block;
 	padding: 16px 0;
+	position: relative;
+}
+.bly-si-more-menu ul li a::before {
+	position: absolute;
+	content: "\f105";
+	font-family: FontAwesome;
+	color: #a09191;
+	right: -10px;
+	top: 50%;
+	transform: translateY(-50%);
+	opacity: 0.7;
 }
 .bly-si-more-menu ul li a span {
 	font-size: 20px;
 	color: #333;
 }
+.bly-si-more-menu ul li a::after {
+	clear: both;
+	display: table;
+	content: "";
+}
+.bly-si-more-menu ul li a i, 
+.bly-si-more-menu ul li a span {
+	display: block !important;
+}
+.bly-si-more-menu ul li a i {
+	text-align: center; 
+	margin-top: 0 !important;
+	position: absolute;
+	top: 50%;
+	transform: translateY(-50%);
+	color: #fff;
+	height: 50px !important;
+	width: 50px !important;
+}
+.bly-si-more-menu ul li a i::after {
+	position: absolute;
+	content: "";
+	background-color: #333;
+	height: 50px;
+	width: 50px;
+	top: 50%;
+	left: 0;
+	z-index: -1;
+	border-radius: 50%;
+	transform: translateY(-50%);
+}
+.bly-si-more-menu ul li a i::before {
+	position: absolute;
+	left: 0;
+	top: 50%;
+	transform: translateY(-50%);
+	right: 0;
+}
+.bly-si-more-menu ul li a span {
+	width: 80%;
+	float: right;
+}
+.bly-menu-desc {
+	font-size: 13px !important;
+	color: #a09191 !important;
+	font-weight: 500;
+}
+
 /**== SlideIn Menu Widgets Styling CSS :: END ==**/
 
 /**== Blog Listing CSS :: START ==**/
